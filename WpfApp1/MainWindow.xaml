@@ -1,0 +1,24 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="813">
+    <Grid>
+
+
+
+        <TextBlock Name="txtBakiye" FontSize="50" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="254,83,0,0" Width="340" RenderTransformOrigin="0.571,0.542"/>
+        <Button Name="btnYatir" Width="135" VerticalAlignment="Top" HorizontalAlignment="Left" Height="58" Content="Para Yatir"  FontSize="30" Margin="23,264,0,0" Click="btnYatir_Click" Background="#FF1FD66D"></Button>
+        <Button Name="btnCek" Width="135" VerticalAlignment="Top" HorizontalAlignment="Right" Height="59" Content="Para Cek"  FontSize="30" Margin="0,344,655,0" Click="btnCek_Click" Background="#FFFFBC03"></Button>
+        <Button Name="btnSorgula" Width="202" VerticalAlignment="Top" HorizontalAlignment="Left" Height="59" Content="Bakiye Sorgula"  FontSize="30" Margin="198,344,0,0" Click="btnSorgula_Click"></Button>
+        <TextBox HorizontalAlignment="Left" Margin="299,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="210" Name="txtYatir" Height="44" FontSize="40" TextChanged="txtYatir_TextChanged"/>
+        <Label Content="Arti Para Bakiyeniz" HorizontalAlignment="Left" Margin="611,246,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <TextBlock Name="txtArti" Text="" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="683,0,0,0" RenderTransformOrigin="0.615,2.339" Foreground="#FF8E8888" ></TextBlock>
+        <Button Name="btnExit" Content="Cikis" FontSize="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="652,344,0,0" Width="131" Height="58" Click="btnExit_Click" Background="#FFF13A03" RenderTransformOrigin="0.746,0.399"></Button>
+        <Button Name="btnOde" Content="Borc Ode" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="30" RenderTransformOrigin="0.845,1.066" Margin="444,345,0,0" Height="58" Width="150" Background="#FFF7CC03" Click="btnOde_Click"></Button>
+        
+    </Grid>
+</Window>
