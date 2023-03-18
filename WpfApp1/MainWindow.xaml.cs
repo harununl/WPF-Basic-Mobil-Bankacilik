@@ -39,13 +39,16 @@ namespace WpfApp1
             public double bakiye { get; set; }
             public double miktar { get; set; }
             public double credit { get; set; }
+            public double borc { get; set; }
+           
          
 
-            public Atm(double bakiye,double miktar,double credit )
+            public Atm(double bakiye,double miktar,double credit,double borc )
             {
                 this.bakiye = bakiye;
                 this.miktar = miktar;
                 this.credit = credit;   
+                this.borc = borc;
               
             }
 
@@ -79,12 +82,27 @@ namespace WpfApp1
 
             }
 
-            public double borcOde()
+            public double  borcOde()
             {
                 credit += miktar;
 
 
                 return credit;
+            }
+          
+            public double krediCek()
+            {
+                borc -= miktar;
+
+
+
+                return borc;
+            }
+            public double krediOde()
+            {
+                borc += miktar;
+
+                return borc;
             }
 
 
@@ -97,15 +115,15 @@ namespace WpfApp1
             double miktariniz;
             double bakiyeniz;
             double credit = 1000;
-           
+            double borc;
 
             double.TryParse(txtYatir.Text, out miktariniz);
             double.TryParse(txtBakiye.Text, out bakiyeniz);
+            double.TryParse(txtKredi.Text, out borc);
 
-            
 
 
-            Atm islem = new Atm(bakiyeniz, miktariniz, credit);
+            Atm islem = new Atm(bakiyeniz, miktariniz, credit,borc);
 
 
             if (MessageBox.Show("Islemi Onayliyor Musunuz?", "UYARI!!", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
@@ -128,17 +146,17 @@ namespace WpfApp1
             double miktariniz;
             double bakiyeniz;
             double ekstra;
-          
+            double borc;
 
             double.TryParse(txtYatir.Text, out miktariniz);
             double.TryParse(txtBakiye.Text, out bakiyeniz);
 
             double.TryParse(txtArti.Text, out ekstra);
+            double.TryParse(txtKredi.Text, out borc);
 
-            
 
 
-            Atm islem = new Atm(bakiyeniz, miktariniz,ekstra);
+            Atm islem = new Atm(bakiyeniz, miktariniz,ekstra, borc);
             double total;
             double creditBalance;
 
@@ -199,7 +217,7 @@ namespace WpfApp1
                             MessageBox.Show("Arti bakiye kullandiniz");
                         }
 
-
+                       
                     }
 
 
@@ -225,14 +243,14 @@ namespace WpfApp1
 
             double total;
             double creditBalance;
-
+            double borc;
 
 
 
             double.TryParse(txtBakiye.Text, out bakiyeniz);
             double.TryParse(txtYatir.Text, out miktariniz);
-
-            Atm islem = new Atm(bakiyeniz, miktariniz, credit);
+            double.TryParse(txtKredi.Text, out borc);
+            Atm islem = new Atm(bakiyeniz, miktariniz, credit, borc);
 
 
 
@@ -274,16 +292,18 @@ namespace WpfApp1
             double bakiyeniz;
             double ekstra;
             double newEkstra;
-
+            double borc;
             double.TryParse(txtYatir.Text, out miktariniz);
             double.TryParse(txtBakiye.Text, out bakiyeniz);
             double.TryParse(txtArti.Text, out ekstra);
+            double.TryParse(txtKredi.Text, out borc);
 
 
-
-            Atm islem = new Atm(bakiyeniz, miktariniz, ekstra);
+            Atm islem = new Atm(bakiyeniz, miktariniz, ekstra,borc); ;
 
             newEkstra = 1000 - ekstra;
+
+            double kredi;
 
             if (MessageBox.Show(newEkstra+"Tutarinda Odeme Yapilacaktir Onayliyor Musunuz? ", "UYARI!!", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
@@ -292,6 +312,12 @@ namespace WpfApp1
                     double total = islem.borcOde();
                     txtArti.Text = total.ToString();
                     
+                }
+                else if(borc < 0 )
+                {
+                    kredi = islem.krediOde();
+                    txtKredi.Text = kredi.ToString();
+
                 }
                 else
                 {
@@ -306,8 +332,67 @@ namespace WpfApp1
 
         }
 
-        private void txtYatir_TextChanged(object sender, TextChangedEventArgs e)
+      
+
+        private void btnKredi_Click(object sender, RoutedEventArgs e)
         {
+
+            double miktariniz;
+            double bakiyeniz;
+            double borc;
+
+
+            double.TryParse(txtYatir.Text, out miktariniz);
+            double.TryParse(txtBakiye.Text, out bakiyeniz);
+            double.TryParse(txtKredi.Text, out borc);
+
+
+
+            Atm islem = new Atm(bakiyeniz, miktariniz,1000,borc);
+
+
+
+
+            double kredi = islem.krediCek();
+            double total = islem.paraCek();
+
+            if(bakiyeniz > 1000)
+            {
+                if(Convert.ToInt32(txtYatir.Text)< 5000)
+                {
+                    MessageBox.Show("5000 e kadar kredi kullanabilirsiniz");
+
+
+                    if (MessageBox.Show(txtYatir.Text + " tutarinda kredi cekilecektir onayliyor musunuz?", "Uyari!!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+
+                        txtKredi.Text = kredi.ToString();
+                        txtYatir.Clear();
+                        MessageBox.Show("Kredi Kullandiniz");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Kullanabileceginiz maksimum kredi miktari 5000dir");
+                    txtYatir.Clear();
+                }
+                
+
+                //txtYatir.Text= kredi.ToString();
+               
+              
+
+               
+
+                
+
+                
+            }
+            else
+            {
+                MessageBox.Show("Kredi icin uygun bulunamadiniz daha sonra tekrar deneyiniz.", "Uyari!!");
+            }
 
         }
     }
