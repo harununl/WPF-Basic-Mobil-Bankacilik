@@ -131,6 +131,7 @@ namespace WpfApp1
                 double total = islem.paraYatir();
 
                 txtBakiye.Text = total.ToString();
+                MessageBox.Show("Hesabiniza " + txtYatir.Text + " Tutarinda Para Yatirilmistir.","Uyari");
             }
                
 
@@ -162,44 +163,9 @@ namespace WpfApp1
 
             if (bakiyeniz == 0 || bakiyeniz < 0)
             {
-                MessageBox.Show("Hesabinizda bakiye bulunmamaktadir");
-                if (MessageBox.Show("Arti bakiyenizden kullanmak ister misiniz?", "UYARI!!", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+              if(txtYatir.Text != "")
                 {
-                    creditBalance = islem.artiPara();
-
-                    if (miktariniz > ekstra)
-                    {
-                        MessageBox.Show("Arti para limitiniz yetersiz yalnizca " + txtArti.Text + " kadar kullanabílirsiniz", "Uyari!!");
-                        txtYatir.Clear();
-                    }
-                    else
-                    {
-                       
-                        txtArti.Text = creditBalance.ToString();
-
-                       MessageBox.Show("Arti bakiye kullandiniz");
-                    }
-
-                   
-
-                }
-                txtYatir.Clear();
-            }
-            else
-            {
-                 total = islem.paraCek();
-                if (total >= 0)
-                {
-                    txtBakiye.Text = total.ToString();
-
-                    txtYatir.Clear();
-                }
-                else
-                {
-                    MessageBox.Show("Bakiyeniz yeterli degil");
-
-                   
-
+                    MessageBox.Show("Hesabinizda bakiye bulunmamaktadir");
                     if (MessageBox.Show("Arti bakiyenizden kullanmak ister misiniz?", "UYARI!!", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
                         creditBalance = islem.artiPara();
@@ -217,12 +183,71 @@ namespace WpfApp1
                             MessageBox.Show("Arti bakiye kullandiniz");
                         }
 
-                       
+
+
+                    }
+                    txtYatir.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Lutfen Cekilecek Miktari Giriniz.");
+                }
+            }
+            else
+            {
+                if(txtYatir.Text != "")
+                {
+                   if(MessageBox.Show("Para Cekme Islemini Onayliyor Musunuz?", "Uyari", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        total = islem.paraCek();
+                        if (total >= 0)
+                        {
+                            txtBakiye.Text = total.ToString();
+                            MessageBox.Show("Hesabinizdan " + txtYatir.Text + " Tutarinda Para Cekilmistir", "Uyari");
+                            txtYatir.Clear();
+                            
+                        }
+                        else
+                        {
+                            MessageBox.Show("Bakiyeniz yeterli degil");
+
+
+
+                            if (MessageBox.Show("Arti bakiyenizden kullanmak ister misiniz?", "UYARI!!", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                            {
+                                creditBalance = islem.artiPara();
+
+                                if (miktariniz > ekstra)
+                                {
+                                    MessageBox.Show("Arti para limitiniz yetersiz yalnizca " + txtArti.Text + " kadar kullanabílirsiniz", "Uyari!!");
+                                    txtYatir.Clear();
+                                }
+                                else
+                                {
+
+                                    txtArti.Text = creditBalance.ToString();
+
+                                    MessageBox.Show("Arti bakiye kullandiniz");
+                                }
+
+
+                            }
+
+
+
+                            txtYatir.Clear();
+                        }
+
+                    }
+                    else
+                    {
+                        txtYatir.Clear();
                     }
 
-
-
-                    txtYatir.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Lutfen Cekilecek Miktari Giriniz.");
                 }
                     
                 
@@ -354,45 +379,46 @@ namespace WpfApp1
 
 
             double kredi = islem.krediCek();
-            double total = islem.paraCek();
 
-            if(bakiyeniz > 1000)
+            if (txtYatir.Text != "")
             {
-                if(Convert.ToInt32(txtYatir.Text)< 5000)
+                if (bakiyeniz > 1000)
                 {
-                    MessageBox.Show("5000 e kadar kredi kullanabilirsiniz");
 
 
-                    if (MessageBox.Show(txtYatir.Text + " tutarinda kredi cekilecektir onayliyor musunuz?", "Uyari!!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    if (Convert.ToInt32(txtYatir.Text) < 5000)
                     {
+                        MessageBox.Show("5000 e kadar kredi kullanabilirsiniz");
 
-                        txtKredi.Text = kredi.ToString();
-                        txtYatir.Clear();
-                        MessageBox.Show("Kredi Kullandiniz");
+
+                        if (MessageBox.Show(txtYatir.Text + " tutarinda kredi cekilecektir onayliyor musunuz?", "Uyari!!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        {
+
+                            txtKredi.Text = kredi.ToString();
+                            txtYatir.Clear();
+                            MessageBox.Show("Kredi Kullandiniz");
+                        }
+
                     }
+                    else
+                    {
+                        MessageBox.Show("Kullanabileceginiz maksimum kredi miktari 5000dir");
+                        txtYatir.Clear();
+                    }
+
+
 
                 }
                 else
                 {
-                    MessageBox.Show("Kullanabileceginiz maksimum kredi miktari 5000dir");
-                    txtYatir.Clear();
+                    MessageBox.Show("Kredi Icin Hesabinizda 1000 den fazla Bakiye Bulunmalidir", "Uyari!!");
                 }
-                
-
-                //txtYatir.Text= kredi.ToString();
-               
-              
-
-               
-
-                
-
-                
             }
             else
             {
-                MessageBox.Show("Kredi icin uygun bulunamadiniz daha sonra tekrar deneyiniz.", "Uyari!!");
+                MessageBox.Show("Lutfen Cekmek Istediginiz Kredi Tutarini Giriniz.");
             }
+           
 
         }
     }

@@ -5,22 +5,59 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="813">
+        Title="MainWindow" MaxHeight="497" MaxWidth="813" Height="515" MinHeight="497" MinWidth="813">
+
+
+
+
+
+
+
+
+
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+
+        </Grid.RowDefinitions>
+
+
+        <Border Grid.Row="0" Margin="0,0,0,240" Grid.RowSpan="2" >
+            <Grid>
+
+                <TextBlock Text="0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20" Foreground="Red" Margin="38,23,0,0" Name="txtKredi" Width="106" TextAlignment="Center" RenderTransformOrigin="0.674,0.452" Height="27" FontWeight="Bold" ></TextBlock>
+
+                <TextBlock Name="txtArti" Text="" Margin="38,120,669,68"   TextAlignment="Center" Foreground="Green" FontWeight="Bold" FontSize="20" RenderTransformOrigin="0.499,1.222" ></TextBlock>
+                <Label Content="Arti Para Bakiyeniz" HorizontalAlignment="Left"  VerticalAlignment="Top" FontSize="20" Margin="10,170,0,0" FontWeight="Bold" Height="37" Width="188" />
+                <Label Content="Kredi Borcunuz" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20" Margin="14,55,0,0" Width="154" FontWeight="Bold" Height="37" ></Label>
+                <TextBlock Name="txtBakiye" FontWeight="Bold" TextAlignment="Center" FontSize="50" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="226,55,0,0" Width="340" RenderTransformOrigin="0.571,0.542" Height="67"/>
+            </Grid>
+        </Border>
+
+        <Border  Grid.Row="1" >
+
+            <Grid>
+                <TextBox HorizontalAlignment="Center" FontWeight="Bold" TextAlignment="Center"  TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="361" Name="txtYatir" Height="44" FontSize="40" RenderTransformOrigin="0.334,0.562" Margin="0,43,0,0" />
+                <Button Name="btnYatir" Width="155" VerticalAlignment="Top" HorizontalAlignment="Left" Height="58" Content="Para Yatir"  FontSize="30" Margin="16,149,0,0" Click="btnYatir_Click" Background="#FF1FD66D"></Button>
+                <Button Name="btnCek" Width="155" VerticalAlignment="Top" HorizontalAlignment="Left" Height="59" Content="Para Cek"  FontSize="30" Margin="200,149,0,0" Click="btnCek_Click" Background="#FFFFBC03"></Button>
+                <Button Name="btnSorgula" Width="326" VerticalAlignment="Top" HorizontalAlignment="Left" Height="59" Content="Bakiye Sorgula"  FontSize="30" Margin="385,148,0,0" Click="btnSorgula_Click" RenderTransformOrigin="0.656,1.524"></Button>
+
+                <Button Name="btnExit" FontWeight="Bold" Content="Cikis" FontSize="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="674,-198,0,0" Width="131" Height="58" Click="btnExit_Click" Background="#FFF13A03" RenderTransformOrigin="0.746,0.399"></Button>
+                <Button Name="btnOde" Content="Borc Ode" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="30" RenderTransformOrigin="0.845,1.066" Margin="16,78,0,0" Height="58" Width="155" Background="#FFF7CC03" Click="btnOde_Click"></Button>
+                <Button Name="btnKredi" Content="Kredi Cek" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="30" Width="155" Height="59" Margin="16,14,0,0" Click="btnKredi_Click"></Button>
+            </Grid>
+
+
+        </Border>
 
 
 
-        <TextBlock Name="txtBakiye" FontSize="50" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="221,82,0,0" Width="340" RenderTransformOrigin="0.571,0.542"/>
-        <Button Name="btnYatir" Width="155" VerticalAlignment="Top" HorizontalAlignment="Left" Height="58" Content="Para Yatir"  FontSize="30" Margin="16,264,0,0" Click="btnYatir_Click" Background="#FF1FD66D"></Button>
-        <Button Name="btnCek" Width="155" VerticalAlignment="Top" HorizontalAlignment="Right" Height="59" Content="Para Cek"  FontSize="30" Margin="0,344,642,0" Click="btnCek_Click" Background="#FFFFBC03"></Button>
-        <Button Name="btnSorgula" Width="202" VerticalAlignment="Top" HorizontalAlignment="Left" Height="59" Content="Bakiye Sorgula"  FontSize="30" Margin="307,344,0,0" Click="btnSorgula_Click"></Button>
-        <TextBox HorizontalAlignment="Left" Margin="299,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="210" Name="txtYatir" Height="44" FontSize="40" />
-        <Label Content="Arti Para Bakiyeniz" HorizontalAlignment="Left" Margin="618,366,0,0" VerticalAlignment="Top" FontSize="20" RenderTransformOrigin="0.629,0.611"/>
-        <TextBlock Name="txtArti" Text="" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="693,310,0,0" RenderTransformOrigin="0.615,2.339" Foreground="#FF8E8888" ></TextBlock>
-        <Button Name="btnExit" Content="Cikis" FontSize="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="672,27,0,0" Width="131" Height="58" Click="btnExit_Click" Background="#FFF13A03" RenderTransformOrigin="0.746,0.399"></Button>
-        <Button Name="btnOde" Content="Borc Ode" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="30" RenderTransformOrigin="0.845,1.066" Margin="16,179,0,0" Height="58" Width="155" Background="#FFF7CC03" Click="btnOde_Click"></Button>
-        <Button Name="btnKredi" Content="Kredi Cek" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="30" Width="155" Height="59" Margin="16,99,0,0" Click="btnKredi_Click"></Button>
-        <Label Content="Kredi Borcunuz" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20" Margin="14,55,0,0" Width="207" ></Label>
-        <TextBlock Text="" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="20" Foreground="Red" Margin="51,23,0,0" Name="txtKredi" ></TextBlock>
     </Grid>
 </Window>
